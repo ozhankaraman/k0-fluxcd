@@ -1,0 +1,18 @@
+image:
+  repository: ozhankaraman/python-helloworld
+  tag: 3.2.3
+replicaCount: 2
+hpa:
+  enabled: true
+canary:
+  enabled: true
+ingress:
+  enabled: true
+  path: /
+  hosts:
+  - python-helloworld-prod.k.zebrastack.com
+  tls:
+  - hosts:
+    - python-helloworld-prod.k.zebrastack.com
+    secretName: ingress-cert-k2
+

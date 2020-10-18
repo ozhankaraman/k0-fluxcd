@@ -1,0 +1,34 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: python-helloworld-dev
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: python-helloworld-dev
+  chart:
+    git: git@github.com:ozhankaraman/k0-fluxcd
+    path: charts/python-helloworld
+    ref: master
+  values:
+    image:
+      repository: ozhankaraman/python-helloworld
+      tag: dev-mwzwxixy
+    replicaCount: 1
+    hpa:
+      enabled: false
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      path: /
+      hosts:
+      - python-helloworld-dev.k.zebrastack.com
+      tls:
+      - hosts:
+        - python-helloworld-dev.k.zebrastack.com
+        secretName: ingress-cert-k0
+

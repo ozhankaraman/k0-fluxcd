@@ -1,0 +1,34 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: podinfo-dev
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: podinfo-dev
+  chart:
+    git: git@github.com:ozhankaraman/k0-fluxcd
+    path: charts/podinfo
+    ref: master
+  values:
+    image:
+      repository: ozhankaraman/podinfo
+      tag: dev-pspzqu6m
+    replicaCount: 3
+    hpa:
+      enabled: false
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      path: /
+      hosts:
+      - podinfo-dev.k.zebrastack.com
+      tls:
+      - hosts:
+        - podinfo-dev.k.zebrastack.com
+        secretName: podinfo-dev-tls

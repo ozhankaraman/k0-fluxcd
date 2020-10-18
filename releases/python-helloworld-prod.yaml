@@ -1,0 +1,35 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: python-helloworld-prod
+  namespace: prod
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~4.3
+spec:
+  releaseName: python-helloworld-prod
+  chart:
+    git: git@github.com:ozhankaraman/k0-fluxcd
+    path: charts/python-helloworld
+    ref: master
+  values:
+    image:
+      repository: ozhankaraman/python-helloworld
+      tag: 4.3.5
+    hpa:
+      enabled: true
+      minReplicas: 3
+      maxReplicas: 30
+    canary:
+      enabled: true
+    ingress:
+      enabled: true
+      path: /
+      hosts:
+      - python-helloworld-prod.k.zebrastack.com
+      tls:
+        credentialName: ingress-cert-k0
+        mode: SIMPLE
+        privateKey: sds
+        serverCertificate: sds

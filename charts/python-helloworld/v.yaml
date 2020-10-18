@@ -14,5 +14,5 @@ ingress:
   tls:
   - hosts:
     - python-helloworld-prod.k.zebrastack.com
-    secretName: ingress-cert-k2
+    secretName: ingress-cert-k0
 

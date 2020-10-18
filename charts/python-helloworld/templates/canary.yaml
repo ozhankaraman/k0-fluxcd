@@ -97,7 +97,7 @@ spec:
     tls:
       credentialName: {{ .Values.ingress.tls.credentialName }}
       mode: {{ .Values.ingress.tls.mode }}
-      privateKey: {{ .Values.ingress.tls.privateKey }} 
+      privateKey: {{ .Values.ingress.tls.privateKey }}
       serverCertificate: {{ .Values.ingress.tls.serverCertificate }}
     {{- end }}
 

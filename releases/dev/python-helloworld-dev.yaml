@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ozhankaraman/python-helloworld
-      tag: dev-mwzwxixy
+      tag: dev-ghac7tgw
     replicaCount: 1
     hpa:
       enabled: false

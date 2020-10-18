@@ -12,7 +12,7 @@ spec:
   chart:
     git: git@github.com:ozhankaraman/k0-fluxcd
     path: charts/podinfo
-    ref: master
+    ref: main
   values:
     image:
       repository: ozhankaraman/podinfo

@@ -12,7 +12,7 @@ spec:
   chart:
     git: git@github.com:ozhankaraman/k0-fluxcd
     path: charts/python-helloworld
-    ref: master
+    ref: main
   values:
     image:
       repository: ozhankaraman/python-helloworld

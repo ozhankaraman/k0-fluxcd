@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ozhankaraman/python-helloworld
-      tag: 4.3.7
+      tag: 4.3.8
     hpa:
       enabled: true
       minReplicas: 3
